@@ -1,0 +1,311 @@
+.note {
+  position: absolute;
+  width: 200px;
+  min-height: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px var(--note-shadow, rgba(0, 0, 0, 0.16)), 0 3px 6px var(--note-shadow, rgba(0, 0, 0, 0.23));
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
+  color: #333; /* Keep note text dark regardless of theme */
+}
+
+.note:hover {
+  box-shadow: 0 10px 20px var(--note-shadow-hover, rgba(0, 0, 0, 0.19)), 0 6px 6px var(--note-shadow, rgba(0, 0, 0, 0.23));
+  z-index: 2;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: move;
+}
+
+.note-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.color-picker {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.tags-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tags-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Tags styles */
+.tags-editor {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tags-editor form {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.tag-input {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 12px;
+}
+
+.add-tag-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.remove-tag-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #666;
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.tag-badge {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: #333;
+}
+
+.note-content {
+  flex-grow: 1;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.note-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 150px;
+  cursor: text;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  padding: 0;
+}
+
+/* Resizable handle styles */
+.resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: se-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.resize-icon {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+  transform: rotate(45deg);
+}
+
+.react-resizable {
+  position: relative;
+}
+
+.note {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rich Text Editor Styles */
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.editor-container .quill {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+}
+
+.editor-container .ql-container {
+  font-size: inherit;
+  font-family: inherit;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.editor-container .ql-toolbar {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.editor-container .ql-editor {
+  padding: 8px;
+  min-height: 80px;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.done-btn {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.done-btn:hover {
+  background-color: #45a049;
+}
+
+.loading-editor {
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+  .note {
+    width: 180px !important;
+    min-height: 180px;
+  }
+
+  .editor-container .ql-toolbar {
+    padding: 3px;
+  }
+
+  .editor-container .ql-toolbar button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .editor-container .ql-editor {
+    padding: 5px;
+  }
+
+  .tags-editor {
+    padding: 5px;
+  }
+
+  .tag-input {
+    font-size: 11px;
+    padding: 3px 5px;
+  }
+
+  .add-tag-btn {
+    font-size: 11px;
+    padding: 3px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .note {
+    width: 150px !important;
+    min-height: 150px;
+  }
+
+  .note-header {
+    padding-bottom: 3px;
+  }
+
+  .tag-badge {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
+}
